@@ -19,7 +19,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"text":"bad"}' 'https://se
 
 ## Todo / Would Do:
 
-* Running the ML model is CPU intensive and the FastText library is not great. I would definitely improve the devops, run more node processes, and audit the library.
+* Running the ML model is CPU intensive and the node.js FastText library is not great. I would definitely improve the devops, run more node processes, and audit the library.
 * Redo the he frontend demo page. It is rubbish. It is a modified bootstrap example and some jQuery.
 * Add Yelp reviews to the model. I scraped all Yelp locations in the US and have a couple hundred thousand reviews to make model better (was out of scope for this demo).
 
