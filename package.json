@@ -32,12 +32,9 @@
     "typescript": "^3.0.3"
   },
   "scripts": {
-    "clean": "rm -r dist/*; true",
-    "prebuild": "npm run clean -s && mkdir -p dist",
     "build": "tsc",
     "test": "NODE_ENV=testing MODEL_PATH=./model.bin ./node_modules/.bin/mocha --full-trace \"dist/tests/test-setup.js\" \"dist/tests/**/test-*.js\" --exit --",
     "build_and_test": "npm run build && npm run test",
-    "start": "node dist/app.js",
-    "build_and_restart": "npm run build && docker-compose restart -t 5 web"
+    "startdev": "NODE_ENV=development MODEL_PATH=./model.bin node dist/app.js"
   }
 }

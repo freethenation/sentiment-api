@@ -54,7 +54,7 @@ async function main() {
     const server = app.listen(PORT, async function mainApp() {
         logger.info(`Listening on port ${PORT}...`);
     });
-    server.setTimeout(330 * 1000); // must be more than 300s so nginx closes first
+    server.setTimeout(301 * 1000);
     process.on('SIGTERM', function shutDown() {
         logger.info('Received SIGTERM signal, shutting down gracefully');
         server.close(() => {
