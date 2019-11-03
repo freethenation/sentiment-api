@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sentiment API Demo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/logo.svg" alt="" width="72" height="72">
+            <h2>Sentiment API Demo</h2>
+            <p class="lead">This simple webpage demos usage of the sentiment analysis api</p>
+        </div>
+
+        <form class="needs-validation pb-4" id="form">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <h3 style="text-align: center;">Text To Analize</h3>
+                    <input type="text" class="form-control" id="text" value="" required>
+                    <div id="errortext" class="text-danger"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto d-block clearfix" style="width: 400px;">
+                    <button class="btn btn-primary float-left" type="submit" value="sentiment">Do Sentiment Analysis</button>
+                    <button class="btn btn-primary float-right" type="submit" value="nearestneighbors">Find Similar Words</button>
+                </div>
+            </div>
+        </form>
+
+        <div id="responseJsonCard" class="row" style="visibility: hidden;">
+                <div class="card card-body bg-light mb-4">
+                    <h5 class="text-center">Curl to Make API Request</h5>
+                    <pre id="curlRequest"></pre>
+                </div>
+            <div class="card card-body bg-light mb-4">
+                <h5 class="text-center">JSON Response Return by API</h5>
+                <pre id="responseJson"></pre>
+            </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2017-2018 JollyBit</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacy</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Support</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function () {
+            $('#form').submit(function (evt) {
+                debugger
+                evt.preventDefault();
+                $("#errortext").text('')
+                const endpoint = $(document.activeElement).val();
+                const text = $("#text").val();
+                $("#curlRequest").text(`curl -X POST -H "Content-Type: application/json" -d '{"text":"${text.replace(/'/g, '')}"}' '/api/${endpoint}'`)
+                $("#responseJson").text("")
+                $.ajax({
+                    type: "POST",
+                    url: `/api/${endpoint}`,
+                    data: JSON.stringify({ text }),
+                    contentType: 'application/json',
+                }).done((res) => {
+                    $('#responseJsonCard').css('visibility', 'visible')
+                    $("#responseJson").text(JSON.stringify(res, null, "    "))
+                }).fail((err) => {
+                    $("#errortext").text(err.responseJSON.message)
+                })
+            });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    command: bash -c "npm run start"
+    volumes:
+      - .:/opt/sentiment_analysis
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      MODEL_PATH: /opt/sentiment_analysis/model.bin
