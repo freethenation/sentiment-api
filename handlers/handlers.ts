@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { HttpError } from '../helpers/util';
-import * as path from 'path';
 
 import { initLogger } from '../helpers/logger';
 const logger = initLogger(__filename);

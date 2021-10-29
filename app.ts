@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as handlers from './handlers/handlers';
-import * as auth from './helpers/auth'
 
 import { initLogger } from './helpers/logger';
 const logger = initLogger(__filename);
