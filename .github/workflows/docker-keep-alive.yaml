@@ -4,7 +4,7 @@ name: docker hub keep alive
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '* 15 1 * *'
+    - cron:  '* 5 1 * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
