@@ -9,12 +9,12 @@ FastText is unsupervised and only understands words and phrases in the context o
 
 ## Usage
 
-The **[live demo](https://sentiment.jollybit.com/)** explains how to use the API including example curls and responses.
+The **[live demo](https://sentiment-analysis.mod64.net/)** explains how to use the API including example curls and responses.
 
 An example curl for both of the endpoints exposed by the REST API:
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"text":"broke after 2 days"}' 'https://sentiment.jollybit.com/api/sentiment'
-curl -X POST -H "Content-Type: application/json" -d '{"text":"bad"}' 'https://sentiment.jollybit.com/api/nearestneighbors'
+curl -X POST -H "Content-Type: application/json" -d '{"text":"broke after 2 days"}' 'https://sentiment-analysis.mod64.net/api/sentiment'
+curl -X POST -H "Content-Type: application/json" -d '{"text":"bad"}' 'https://sentiment-analysis.mod64.net/api/nearestneighbors'
 ```
 
 ## Todo / Would Do:

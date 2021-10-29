@@ -76,7 +76,7 @@
                 $("#errortext").text('')
                 const endpoint = $(document.activeElement).val();
                 const text = $("#text").val();
-                $("#curlRequest").text(`curl -X POST -H "Content-Type: application/json" -d '{"text":"${text.replace(/'/g, '')}"}' 'https://sentiment.jollybit.com/api/${endpoint}'`)
+                $("#curlRequest").text(`curl -X POST -H "Content-Type: application/json" -d '{"text":"${text.replace(/'/g, '')}"}' 'https://sentiment-analysis.mod64.net/api/${endpoint}'`)
                 $("#responseJson").text("")
                 $.ajax({
                     type: "POST",
