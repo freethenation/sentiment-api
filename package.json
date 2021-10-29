@@ -31,6 +31,7 @@
     "build": "tsc",
     "test": "NODE_ENV=testing MODEL_PATH=./model.bin ./node_modules/.bin/mocha --full-trace \"dist/tests/test-setup.js\" \"dist/tests/**/test-*.js\" --exit --",
     "build_and_test": "npm run build && npm run test",
-    "startdev": "NODE_ENV=development MODEL_PATH=./model.bin node dist/app.js"
+    "startdev": "NODE_ENV=development MODEL_PATH=./model.bin node dist/app.js",
+    "start": "MODEL_PATH=./model.bin node dist/app.js"
   }
 }

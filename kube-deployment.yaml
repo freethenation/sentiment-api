@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-analysis
+spec:
+  selector:
+    matchLabels:
+      app: sentiment-analysis
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sentiment-analysis
+    spec:
+      initContainers:
+      - name: init-sentiment-analysis
+        image: freethenation/sentiment-api:latest
+        command: ["/opt/sentiment_analysis/scripts/install_model.sh"]
+        env:
+          - name: MODEL_PATH
+            value: "/model/model.bin"
+        volumeMounts:
+          - mountPath: /model
+            name: model-storage
+      containers:
+        - name: sentiment-analysis
+          image: freethenation/sentiment-api:latest
+          env:
+          - name: MODEL_PATH
+            value: "/model/model.bin"
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+              name: http
+          volumeMounts:
+            - mountPath: /model
+              name: model-storage
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: model-storage
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentiment-analysis
+spec:
+  selector:
+    app: sentiment-analysis
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

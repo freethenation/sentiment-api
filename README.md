@@ -36,7 +36,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"text":"bad"}' 'https://se
 2. Run `npm install`
 3. Run `npm run build`
 4. Run `./scripts/install_model.sh` **NOTE: This file is about 2GB**
-5. Run `docker-compose up`
+5. Run `npm run start`
 
 ### Run Tests
 
